@@ -4,7 +4,7 @@ An original browser-based Nairobi matatu driving game prototype. It uses familia
 
 ## Play and controls
 
-The game starts on a Nairobi CBD loop route. Drive to each glowing stage, brake to a stop, press **F** to open doors, and hold position while the conductor boards/alights passengers. Doors auto-close after the service animation. Earn fares for passenger drop-offs and avoid speeding and traffic bumps.
+Drive the Nairobi CBD loop route. Reach each glowing stage, brake to a stop, and press **F** to serve passengers. Earn fares, avoid speeding, and watch traffic.
 
 - **W / S** or arrow keys: accelerate / brake / reverse
 - **A / D** or arrow keys: steer
@@ -14,6 +14,11 @@ The game starts on a Nairobi CBD loop route. Drive to each glowing stage, brake 
 - **H**: horn; **L** headlights; **K** wipers; **M** radio; **P** pause; **R** return to Kencom
 - **Space**: handbrake
 - Touch controls are available on smaller screens.
+- Pick an original matatu paint design in the **Matatu Garage** panel.
+
+## Matatu liveries
+
+The game generates original procedural liveries from color palettes and geometric motifs associated broadly with Nairobi matatu art. Available designs include CBD Chrome, Sheng Star, Savannah Pulse, Night Runner, and Green Machine. They are inspired by the energetic color and pattern culture highlighted by [Nganya Kenya](https://www.instagram.com/nganya_kenya/), but do not use copied Instagram photographs, identifiable vehicle paint jobs, artist tags, portraits, logos, or slogans. If you have permission to use a specific reference photo, provide it and we can make a properly credited, authorized skin.
 
 ## Run locally
 
@@ -26,6 +31,6 @@ Optional Google Maps imagery: create a local `.env` (do not commit it) with `VIT
 
 ## Nairobi data
 
-Named roads and mapped building footprints load from OpenStreetMap Overpass at runtime; if the service is unreachable, an offline practice grid keeps the game playable. The route has named Nairobi stages (Kencom, Railways, KICC/City Hall Way, Westlands, Yaya Centre). On-screen map data attribution is included. OSM data © OpenStreetMap contributors, under the Open Database License (ODbL). Public Overpass servers can rate-limit requests; use a hosted OSM extract/provider for production.
+Named roads and mapped building footprints load from OpenStreetMap Overpass at runtime; if the service is unreachable, an offline practice grid keeps the game playable. Route stops include Kencom, Railways, KICC/City Hall Way, Westlands, and Yaya Centre. The game credits OpenStreetMap contributors under the Open Database License (ODbL).
 
-Vehicles, pedestrians, radio tones, fares, traffic behavior, and physics are procedural game simulations—not live transit or traffic data. No assets or proprietary implementation from Bus Simulator EVO are used.
+Vehicles, pedestrians, radio tones, fares, traffic behavior, and physics are procedural simulations—not live transit or traffic data. No proprietary Bus Simulator EVO implementation or assets are used.
