@@ -1,22 +1,22 @@
 # Matatu Run 3D — Nairobi
 
-Browser-based matatu driving prototype with a procedural green matatu, custom cab interior, chase/cab/overhead/cinematic cameras, and real Nairobi road and building geometry from OpenStreetMap.
+Browser-based matatu driving prototype with a bright green, detailed procedural matatu, custom right-hand-drive cab dashboard and steering wheel, and chase/cab/overhead/cinematic cameras. Named Nairobi road and mapped building geometry comes from OpenStreetMap. An optional Google Maps panel shows official hybrid imagery and follows the player.
 
 ## Run locally
 
 ```sh
 npm install
 cp .env.example .env
-# Optional, for the Google Maps reference panel: set VITE_GOOGLE_MAPS_API_KEY in .env
+# Add your key to .env; never commit it.
 npm run dev
 ```
 
-Build with `npm run build`. Controls: W/S drive and brake, A/D steer, E stop/board/drop off, C cycle camera views, H horn.
+Set `VITE_GOOGLE_MAPS_API_KEY` in `.env`. To request a Google vector map configuration with 3D building visualization where available, you can also set `VITE_GOOGLE_MAP_ID` to a Map ID created in Google Cloud. Enable Maps JavaScript API, configure billing, and restrict the key to your local/deployed website referrers. Restart Vite after editing `.env`. Build with `npm run build`.
 
-## Map data and imagery
+The official Google map is a separate inset, centered on the bus as it moves. Its HYBRID/ROAD button changes map mode. Google imagery/buildings are displayed only inside the official Google Maps API; the game does not scrape, download, or convert Google map content into Three.js assets. Google map features such as tilt/3D buildings depend on supported map type, Map ID, zoom, region, browser, and current Google Maps Platform behavior.
 
-The game requests named road geometry and building footprints for central Nairobi from OpenStreetMap's Overpass API at runtime. Roads and mapped buildings are rendered in the 3D scene; the procedural colors/facade details are visual approximations, not photorealistic scans. The query bbox is in `src/main.js` (`BBOX`). Retain OSM attribution; data is © OpenStreetMap contributors and subject to the ODbL. Public Overpass endpoints have availability/rate limits; production deployments should use a suitable hosted extract/provider and cache responsibly.
+## Roads, buildings, and attribution
 
-Optional Google Maps imagery appears in the separate inset through the official Maps JavaScript API, and requires a Google Maps Platform key with Maps JavaScript API enabled, billing configured, and website/referrer restrictions. Do not commit the key. Imagery is not copied into Three.js or used as a game texture. Review Google's terms and attribution requirements before deployment.
+The 3D world requests named roads and building footprints for central Nairobi from OpenStreetMap Overpass at runtime. Roads use mapped centerlines; building masses follow mapped footprints, with approximate procedural height/material details where OSM tags are incomplete. This is not a photorealistic scan. The road query area is `BBOX` in `src/main.js`. Keep OSM attribution visible; data © OpenStreetMap contributors under the Open Database License (ODbL). Public Overpass endpoints have availability/rate limits; for production, use a hosted extract/provider and cache responsibly.
 
-Traffic and pedestrians are game simulations, not live traffic data. The vehicle/dashboard are original procedural meshes inspired by the supplied visual reference, not downloaded 3D assets.
+Traffic, pedestrians, fares, and driving are simulations, not live traffic data. Controls: W/S drive/brake, A/D steer, E stop/board/drop off, C change camera, H horn.
