@@ -1,22 +1,31 @@
 # Matatu Run 3D — Nairobi
 
-Browser-based matatu driving prototype with a bright green, detailed procedural matatu, custom right-hand-drive cab dashboard and steering wheel, and chase/cab/overhead/cinematic cameras. Named Nairobi road and mapped building geometry comes from OpenStreetMap. An optional Google Maps panel shows official hybrid imagery and follows the player.
+An original browser-based Nairobi matatu driving game prototype. It uses familiar genre conventions (city routes, bus stops, traffic, driving controls) but does not copy Bus Simulator EVO code, assets, maps, or branding.
+
+## Play and controls
+
+The game starts on a Nairobi CBD loop route. Drive to each glowing stage, brake to a stop, press **F** to open doors, and hold position while the conductor boards/alights passengers. Doors auto-close after the service animation. Earn fares for passenger drop-offs and avoid speeding and traffic bumps.
+
+- **W / S** or arrow keys: accelerate / brake / reverse
+- **A / D** or arrow keys: steer
+- **F**: door interlock / serve stage (only when stopped)
+- **Q / E**: left / right indicators
+- **C**: chase, cab, overhead, cinematic camera
+- **H**: horn; **L** headlights; **K** wipers; **M** radio; **P** pause; **R** return to Kencom
+- **Space**: handbrake
+- Touch controls are available on smaller screens.
 
 ## Run locally
 
 ```sh
 npm install
-cp .env.example .env
-# Add your key to .env; never commit it.
 npm run dev
 ```
 
-Set `VITE_GOOGLE_MAPS_API_KEY` in `.env`. To request a Google vector map configuration with 3D building visualization where available, you can also set `VITE_GOOGLE_MAP_ID` to a Map ID created in Google Cloud. Enable Maps JavaScript API, configure billing, and restrict the key to your local/deployed website referrers. Restart Vite after editing `.env`. Build with `npm run build`.
+Optional Google Maps imagery: create a local `.env` (do not commit it) with `VITE_GOOGLE_MAPS_API_KEY=...`; optionally set `VITE_GOOGLE_MAP_ID=...`. Restrict the key by API and web referrers. Google Maps is an optional inset using the official Maps JavaScript API. Google imagery is not scraped, copied, or rendered as Three.js assets.
 
-The official Google map is a separate inset, centered on the bus as it moves. Its HYBRID/ROAD button changes map mode. Google imagery/buildings are displayed only inside the official Google Maps API; the game does not scrape, download, or convert Google map content into Three.js assets. Google map features such as tilt/3D buildings depend on supported map type, Map ID, zoom, region, browser, and current Google Maps Platform behavior.
+## Nairobi data
 
-## Roads, buildings, and attribution
+Named roads and mapped building footprints load from OpenStreetMap Overpass at runtime; if the service is unreachable, an offline practice grid keeps the game playable. The route has named Nairobi stages (Kencom, Railways, KICC/City Hall Way, Westlands, Yaya Centre). On-screen map data attribution is included. OSM data © OpenStreetMap contributors, under the Open Database License (ODbL). Public Overpass servers can rate-limit requests; use a hosted OSM extract/provider for production.
 
-The 3D world requests named roads and building footprints for central Nairobi from OpenStreetMap Overpass at runtime. Roads use mapped centerlines; building masses follow mapped footprints, with approximate procedural height/material details where OSM tags are incomplete. This is not a photorealistic scan. The road query area is `BBOX` in `src/main.js`. Keep OSM attribution visible; data © OpenStreetMap contributors under the Open Database License (ODbL). Public Overpass endpoints have availability/rate limits; for production, use a hosted extract/provider and cache responsibly.
-
-Traffic, pedestrians, fares, and driving are simulations, not live traffic data. Controls: W/S drive/brake, A/D steer, E stop/board/drop off, C change camera, H horn.
+Vehicles, pedestrians, radio tones, fares, traffic behavior, and physics are procedural game simulations—not live transit or traffic data. No assets or proprietary implementation from Bus Simulator EVO are used.
